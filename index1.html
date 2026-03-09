@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Eid Card Responsive</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Pacifico&family=Poppins:wght@300;500&display=swap');
+
+  /* ===== Body & Background ===== */
+  body {
+    margin: 0;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: radial-gradient(ellipse at bottom, #1b2735 0%, #090a0f 100%);
+    overflow: hidden;
+    font-family: 'Poppins', sans-serif;
+    position: relative;
+  }
+
+  /* Moon */
+  .moon {
+    position: absolute;
+    top: 5%;
+    right: 5%;
+    width: 12vw;
+    max-width: 120px;
+    aspect-ratio: 1;
+    background: #fdf3b4;
+    border-radius: 50%;
+    box-shadow: 0 0 60px 10px rgba(253,243,180,0.5);
+    z-index: 1;
+  }
+
+  /* Stars */
+  .star {
+    position: absolute;
+    width: 2px;
+    height: 2px;
+    background: white;
+    border-radius: 50%;
+    animation: twinkle 2s infinite alternate;
+    z-index: 0;
+  }
+
+  @keyframes twinkle {
+    0% {opacity: 0.2;}
+    50% {opacity: 1;}
+    100% {opacity: 0.2;}
+  }
+
+  /* Floating Hearts */
+  .heart {
+    position: absolute;
+    color: #ff4d6d;
+    font-size: 20px;
+    animation: float 6s linear infinite;
+  }
+
+  @keyframes float {
+    0% {transform: translateY(100vh); opacity: 0;}
+    50% {opacity: 1;}
+    100% {transform: translateY(-120vh); opacity: 0;}
+  }
+
+  /* ===== Flip Card ===== */
+  .flip-card {
+    width: 90vw; /* responsive width */
+    max-width: 450px;
+    height: 120vw; /* proportional height */
+    max-height: 600px;
+    perspective: 1000px;
+    z-index: 1;
+  }
+
+  .flip-card-inner {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    transform-style: preserve-3d;
+    transition: transform 0.8s ease-in-out;
+    cursor: pointer;
+    border-radius: 25px;
+  }
+
+  .flip-card-inner.flipped {
+    transform: rotateY(180deg);
+  }
+
+  /* ===== Front & Back Card ===== */
+  .flip-card-front,
+  .flip-card-back {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    border-radius: 25px;
+    backface-visibility: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 15px;
+    box-sizing: border-box;
+  }
+
+  .flip-card-front {
+    background: rgba(255,255,255,0.15);
+    backdrop-filter: blur(15px);
+    border: 2px solid rgba(255,255,255,0.2);
+  }
+
+  .front-text {
+    font-family: 'Pacifico', cursive;
+    font-size: clamp(24px, 5vw, 42px);
+    color: white;
+    text-align: center;
+    text-shadow: 0 2px 10px rgba(0,0,0,0.3);
+  }
+
+  .flip-card-back {
+    background: url(Me.jpeg) center/cover no-repeat;
+    transform: rotateY(180deg);
+    position: relative;
+    border-radius: 25px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .flip-card-back::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: rgba(255,255,255,0.3);
+    border-radius: 25px;
+    z-index: 0;
+  }
+
+  .back-text {
+    position: relative;
+    z-index: 1;
+    text-align: center;
+    line-height: 1.2;
+    font-size: clamp(10px, 2vw, 14px);
+    overflow-wrap: break-word;
+    padding: 5px;
+  }
+</style>
+</head>
+<body>
+
+<div class="moon"></div>
+
+<!-- Stars -->
+<script>
+  for(let i=0;i<100;i++){
+    const star = document.createElement('div');
+    star.classList.add('star');
+    star.style.top = Math.random()*100 + 'vh';
+    star.style.left = Math.random()*100 + 'vw';
+    star.style.width = Math.random()*2 + 'px';
+    star.style.height = star.style.width;
+    star.style.animationDuration = (Math.random()*2 + 1) + 's';
+    document.body.appendChild(star);
+  }
+
+  let heartCount = 40;
+  for(let i=0;i<heartCount;i++){
+    let heart = document.createElement("div");
+    heart.className = "heart";
+    heart.innerHTML = "❤";
+    heart.style.left = Math.random()*100 + "vw";
+    heart.style.animationDuration = (Math.random()*4+4) + "s";
+    heart.style.fontSize = (Math.random()*20+12) + "px";
+    document.body.appendChild(heart);
+  }
+</script>
+
+<!-- Flip Card -->
+<div class="flip-card">
+  <div class="flip-card-inner" id="card">
+    <div class="flip-card-front">
+      <div class="front-text">Eid Mubarak! 🌙</div>
+    </div>
+    <div class="flip-card-back">
+      <div class="back-text">
+        <b>My Love</b> ❤️🌙<br><br>
+        On this beautiful Eid,<br>
+        I pray that Allah fills your life with happiness, peace and endless blessings 🤲✨<br>
+        You are not just someone special for me,<br>
+        you are the most beautiful part of my life ❤️<br>
+        May every Eid of my life be spent with you 🥺💞<br>
+        ✨ <b>Eid Mubarak Meri Jaanu</b> ✨<br><br>
+        <b>Meri Jaan</b> ❤️<br>
+        Ye hamari zindagi ki pehli Eid hai jo ham ek dusre se door hokar mana rahe hain… lekin phir bhi ye moment mere liye bohot khubsurat hai, kyun ke Meri Mohabbat tum ho 💕<br>
+        Tum meri zindagi ho, aur tum jaanti ho ke main tumse kitna pyaar karta hoon ❤️🥺<br>
+        Mujhe tumse behtar koi nahi chahiye, tumse haseen koi nahi chahiye… mere liye tum hi sab kuch ho 🌹<br>
+        Meri jaan, bas mujhse yunhi hamesha piyar karti rehna 💞<br>
+        Aur main wada karta hoon ke main bhi tumse hamesha pyaar karta rahunga ❤️<br>
+        Kisi ka koi ikhtiyar nahi ke wo mujhe tumse alag kar sake 💫<br>
+        <b>I love you so much meri jaan</b> ❤️😘<br>
+        <i>Hamari pehli Beautiful Eid Mubarak meri zindagi ko</i> 🌙✨💖
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Flip on click -->
+<script>
+  const card = document.getElementById('card');
+  card.addEventListener('click', () => card.classList.toggle('flipped'));
+</script>
+
+</body>
+</html>
